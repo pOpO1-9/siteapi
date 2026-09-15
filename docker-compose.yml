@@ -1,0 +1,28 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.example
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      SITEAPI_URL: http://127.0.0.1:3000
+    healthcheck:
+      test: ["CMD", "node", "scripts/healthcheck.mjs"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  worker:
+    build: .
+    command: ["npm", "run", "worker"]
+    env_file:
+      - .env.example
+    environment:
+      NODE_ENV: production
+    depends_on:
+      web:
+        condition: service_healthy

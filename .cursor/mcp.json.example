@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "siteapi": {
+      "command": "npm",
+      "args": ["run", "mcp"],
+      "cwd": "/absolute/path/to/siteapi"
+    }
+  }
+}

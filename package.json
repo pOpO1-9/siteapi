@@ -1,0 +1,30 @@
+{
+  "name": "siteapi",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Turn a public webpage into a live REST API.",
+  "license": "Apache-2.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @siteapi/web",
+    "build": "npm run build -w @siteapi/web",
+    "start": "npm run start -w @siteapi/web",
+    "lint": "npm run lint -w @siteapi/web",
+    "health": "node scripts/healthcheck.mjs",
+    "capture": "npm run capture -w @siteapi/core --",
+    "extract": "npm run extract -w @siteapi/core --",
+    "test": "npm run test -w @siteapi/core && npm run test -w @siteapi/mcp",
+    "mcp": "npm run start -w @siteapi/mcp",
+    "playwright:install": "npx playwright install chromium",
+    "worker": "node apps/web/scripts/worker-stub.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "allowScripts": {
+    "better-sqlite3@12.11.1": true
+  }
+}
